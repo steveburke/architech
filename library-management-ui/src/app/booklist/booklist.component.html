@@ -1,0 +1,35 @@
+<form>
+	<div class="mb-3 row">
+		<label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Full text search:</label>
+		<div class="col-xs-3 col-sm-auto">
+			<input id="table-filtering-search" class="form-control" type="text"/>
+		</div>
+	</div>
+</form>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">Title</th>
+			<th scope="col">Author</th>
+			<th scope="col">Genre</th>
+            <th scope="col">ISBN</th>
+            <th scope="col">Publishing Date</th>
+		</tr>
+	</thead>
+	<tbody>
+		@for (book of books; track book.title; let i = $index) {
+			<tr>
+				<td>{{book.ISBN}}</td>
+                <td>{{book.title}}</td>
+                <td>{{book.author.lastName}}, {{book.author.firstName}}</td>
+                <td>{{book.genre.name}}</td>
+                <td>{{book.publishDate}}</td>
+			</tr>
+		} @empty {
+			<tr>
+				<td colspan="5" style="text-align: center">There are no books in the system.</td>
+			</tr>
+		}
+	</tbody>
+</table>
