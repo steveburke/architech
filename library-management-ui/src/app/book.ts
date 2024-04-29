@@ -1,12 +1,9 @@
-import { Author } from "./author"
-import { Genre } from "./genre"
-
 export interface Book {
     id: number,
     title: string,
-    author: Author,
+    author: string,
     ISBN: string,
     publishDate: Date,
-    genre: Genre,
+    genre: string,
     summary: string
 }

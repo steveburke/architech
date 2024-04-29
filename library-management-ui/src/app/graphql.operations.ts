@@ -5,33 +5,11 @@ query listBooks {
     listBooks {
         id
         ISBN
-        author {
-        firstName
-        lastName
-        }
-        genre {
-            name
-        }
+        author 
+        genre
         title
         summary
         publishDate
-    }
-}
-`
-
-const LIST_GENRES = gql`
-query listGenres {
-    listGenres {
-        name
-    }
-}
-`
-const LIST_AUTHORS = gql`
-query listAuthors {
-    listAuthors
-  	{
-      firstName
-      lastName
     }
 }
 `
@@ -40,13 +18,8 @@ query findBookById {
   bookById(id: ID) {
     id
         ISBN
-        author {
-        firstName
-        lastName
-        }
-        genre {
-            name
-        }
+        author 
+        genre 
         title
         summary
         publishDate
@@ -59,13 +32,8 @@ query searchBooks($searchTerm: String!){
     searchBooks(searchTerm: $searchTerm) {
     id
     ISBN
-    author {
-        firstName
-        lastName
-    }
-    genre {
-        name
-    }
+    author 
+    genre 
     title
     summary
     publishDate
@@ -82,13 +50,8 @@ mutation updateBook{
     addBook(book:Book){
     id
     ISBN
-    author {
-        firstName
-        lastName
-    }
-    genre {
-        name
-    }
+    author 
+    genre 
     title
     summary
     publishDate
@@ -100,13 +63,8 @@ mutation addBook{
     addBook(id: ID, title: String, authorId: ID, ISBN: String,publishDate: String, genre: ID, summary:String){
     id
     ISBN
-    author {
-        firstName
-        lastName
-    }
-    genre {
-        name
-    }
+    author 
+    genre 
     title
     summary
     publishDate
@@ -122,8 +80,6 @@ mutation deleteBook {
 
 export { 
     LIST_BOOKS, 
-    LIST_AUTHORS, 
-    LIST_GENRES, 
     //LIST_BOOKS_BY_AUTHOR, 
     //LIST_BOOKS_BY_GENRE, 
     SEARCH_BOOKS, 

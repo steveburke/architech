@@ -13,12 +13,8 @@
                         <input type="text" class="form-control" id="title" [(ngModel)]="book.title">
                     </div>
                     <div class="form-group">
-                        <label for="selectAuthor">Author</label>
-                        <select ngModel name="author" class="form-control" id="selectAuthor">
-                            <option *ngFor="let author of authors" [value]="book.author.id" selected>
-                                {{ author.firstName }} {{ author.lastName }}
-                            </option>
-                        </select>
+                        <label for="author">Author</label>
+                        <input type="text" class="form-control" id="author" [(ngModel)]="book.author">
                     </div>
                     <div class="form-group">
                         <label for="isbn">ISBN</label>
@@ -29,12 +25,8 @@
                         <input type="date" class="form-control" id="publishDate" [(ngModel)]="book.publishDate">
                     </div>
                     <div class="form-group">
-                        <label for="selectGenre">Genre</label>
-                        <select ngModel name="genre" class="form-control" id="selectGenre">
-                            <option *ngFor="let genre of genres" [value]="book.genre.id">
-                                {{ genre.name }}
-                            </option>
-                        </select>
+                        <label for="genre">Genre</label>
+                        <input type="text" class="form-control" id="genre" [(ngModel)]="book.genre">
                     </div>
                     <div class="form-group">
                         <label for="summary">Summary</label>

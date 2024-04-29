@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Book } from './book';
 import { Apollo, gql } from 'apollo-angular';
-import { ADD_BOOK, FIND_BOOK_BY_ID, LIST_AUTHORS, LIST_BOOKS, LIST_GENRES, SEARCH_BOOKS, UPDATE_BOOK } from './graphql.operations';
+import { ADD_BOOK, FIND_BOOK_BY_ID, LIST_BOOKS, SEARCH_BOOKS, UPDATE_BOOK } from './graphql.operations';
 
 @Injectable({
   providedIn: 'root'
@@ -13,18 +13,6 @@ export class LibraryService {
   listBooks() {
     return this.apollo.query<any>({
       query: LIST_BOOKS
-    });
-  }
-
-  listGenres(){
-    return this.apollo.query<any>({
-      query: LIST_GENRES
-    });
-  }
-
-  listAuthors(){
-    return this.apollo.query<any>({
-      query: LIST_AUTHORS
     });
   }
 
@@ -61,10 +49,10 @@ export class LibraryService {
         variables: {
           id: book.id, 
           title: book.title, 
-          authorId: book.author.id, 
+          author: book.author, 
           ISBN: book.ISBN,
           publishDate: book.publishDate, 
-          genre: book.genre.id, 
+          genre: book.genre, 
           summary:book.summary         
         }
     })

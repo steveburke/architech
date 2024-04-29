@@ -3,8 +3,6 @@ import { Router } from '@angular/router';
 import { Book } from '../book';
 import { LibraryService } from '../library.service';
 import { FormsModule } from '@angular/forms';
-import { Author } from '../author';
-import { Genre } from '../genre';
 import { CommonModule } from '@angular/common'
 @Component({
   selector: 'app-bookedit',
@@ -15,9 +13,6 @@ import { CommonModule } from '@angular/common'
 })
 export class BookeditComponent {
   book: any;
-  authors:Author[] = [];
-  genres:Genre[] = [];
-  selectedAuthor = 4
 
   constructor(public libraryService: LibraryService, private router: Router) {
     const navigation = this.router.getCurrentNavigation();
@@ -26,15 +21,6 @@ export class BookeditComponent {
     }
    }
 
-   ngOnInit(): void{
-    this.libraryService.listAuthors().subscribe((result) => {
-      this.authors = result.data.listAuthors;
-    });
-    this.libraryService.listGenres().subscribe((result) => {
-      this.genres = result.data.listGenres;
-    });
-  }
-  
   saveBook(){
     console.log(this.book);
     this.libraryService.updateBook(this.book).subscribe((result) => {
