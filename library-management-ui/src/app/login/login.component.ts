@@ -17,7 +17,7 @@ export class LoginComponent {
 
   login() {
     this.securityService.login(this.credentials).subscribe(() => {
-      this.router.navigateByUrl('/booklist'); 
+      this.router.navigateByUrl('/book-list'); 
     });
   }
 }

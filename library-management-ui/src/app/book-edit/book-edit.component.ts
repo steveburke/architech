@@ -4,21 +4,21 @@ import { LibraryService } from '../library.service';
 import { SecurityService } from '../security.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-bookedit',
+  selector: 'app-book-edit',
   standalone: true,
   imports: [FormsModule, CommonModule],
-  templateUrl: './bookedit.component.html',
-  styleUrl: './bookedit.component.scss'
+  templateUrl: './book-edit.component.html',
+  styleUrl: './book-edit.component.scss'
 })
-export class BookeditComponent {
+export class BookEditComponent {
   book: any;
   isLoggedIn:boolean = false;
   private modalService = inject(NgbModal);
 
-  constructor(public libraryService: LibraryService, 
+  constructor(private libraryService: LibraryService, 
       private securityService: SecurityService,
       private router: Router) {
     const navigation = this.router.getCurrentNavigation();
@@ -30,22 +30,26 @@ export class BookeditComponent {
   saveBook(){
     this.libraryService.updateBook(this.book).subscribe((result) => {
       this.book = result.data.updateBook;
-      this.router.navigate(['booklist']);
+      this.router.navigate(['book-list']);
     })
   }
 
-  openConfirmationModal(){
-    this.modalService.open(NgbdModalConfirm);
+  openConfirmationModal(book: any){
+    const modalRef:NgbModalRef = this.modalService.open(NgbdModalConfirm);
+    modalRef.componentInstance.book = this.book;
+    
   }
   ngOnInit(): void{
     this.isLoggedIn = this.securityService.isLoggedIn();
   }
 
   cancel(){
-    this.router.navigate(['booklist']);
+    this.router.navigate(['book-list']);
   }
 }
-
+/*
+Ideally this would be a re-usable component for a larger app, but it is only required here.
+*/
 @Component({
 	selector: 'ngbd-modal-confirm',
 	standalone: true,
@@ -76,12 +80,16 @@ export class BookeditComponent {
 
 export class NgbdModalConfirm {
 	modal = inject(NgbActiveModal);
-  constructor(public libraryService: LibraryService){
+  book: any;
+  constructor(private libraryService: LibraryService,private router: Router){
 
   }
   deleteBook(){
     this.libraryService.deleteBook(this.book.id).subscribe((result) => {
-      this.modal.close;
+      if(result.data.deleteBook){
+        this.modal.close();
+        this.router.navigate(['/']);
+      }
     });
   }
 }

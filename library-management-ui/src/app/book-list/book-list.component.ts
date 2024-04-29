@@ -5,17 +5,18 @@ import { Book } from '../book';
 import { Router } from '@angular/router';
 
 @Component({
-	selector: 'app-booklist',
+	selector: 'app-book-list',
 	standalone: true,
-	templateUrl: './booklist.component.html',
+	templateUrl: './book-list.component.html',
   imports: [ FormsModule ]
 })
-export class BooklistComponent {
+export class BookListComponent {
 	books: Book[] = [];
   error: any;
   searchTerm: string = "";
 
 	constructor(public libraryService: LibraryService, private router: Router) {}
+
   ngOnInit(): void{
     this.libraryService.listBooks().subscribe((result) => {
       this.books = result.data.listBooks;
@@ -31,6 +32,6 @@ export class BooklistComponent {
   }
 
   onRowClick(book: Book): void {
-    this.router.navigate(['/bookedit'], { state: { book: book } });
+    this.router.navigate(['/book-edit'], { state: { book: book } });
   }
 }

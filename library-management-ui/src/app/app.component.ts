@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { BooklistComponent } from './booklist/booklist.component';
+import { BookListComponent } from './book-list/book-list.component';
 import { SecurityService } from './security.service';
 import { LoginComponent } from './login/login.component';
-import { BookeditComponent } from './bookedit/bookedit.component';
+import { BookEditComponent } from './book-edit/book-edit.component';
 import { CommonModule } from '@angular/common'
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, BooklistComponent, LoginComponent, BookeditComponent],
+  imports: [RouterOutlet, CommonModule, BookListComponent, LoginComponent, BookEditComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

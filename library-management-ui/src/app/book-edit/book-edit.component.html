@@ -34,7 +34,7 @@
                     </div>
                     <div class="float-end">
                         <button type="button" *ngIf="isLoggedIn" class="btn btn-outline-primary" (click)="saveBook()">Save</button>
-                        <button type="button" *ngIf="isLoggedIn" class="btn btn-outline-danger" (click)="openConfirmationModal()">Delete</button>
+                        <button type="button" *ngIf="isLoggedIn" class="btn btn-outline-danger" (click)="openConfirmationModal(book)">Delete</button>
                         <button type="button" class="btn btn-outline-secondary" (click)="cancel()">Cancel</button>
                     </div>
                 </div>

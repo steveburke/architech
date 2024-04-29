@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Book } from './book';
-import { Apollo, gql } from 'apollo-angular';
+import { Apollo, MutationResult, gql } from 'apollo-angular';
 import { ADD_BOOK, DELETE_BOOK, FIND_BOOK_BY_ID, LIST_BOOKS, SEARCH_BOOKS, UPDATE_BOOK } from './graphql.operations';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class LibraryService {
 
   listBooks() {
     return this.apollo.query<any>({
-      query: LIST_BOOKS
+      query: LIST_BOOKS,
+      fetchPolicy: 'network-only'
     });
   }
 
@@ -58,7 +60,7 @@ export class LibraryService {
     })
   }
 
-  deleteBook(bookId: Number){
+  deleteBook(bookId: Number): Observable<MutationResult<any>>{
     return this.apollo.mutate<any>({
       mutation: DELETE_BOOK,
         variables:{ id: bookId}
