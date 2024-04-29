@@ -33,4 +33,6 @@ export class SecurityService {
   isLoggedIn(): boolean {
     return !!this.getToken();
   }
+
+  //TODO: handle expired tokens, refresh tokens
 }

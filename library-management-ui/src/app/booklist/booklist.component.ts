@@ -23,6 +23,8 @@ export class BooklistComponent {
   }
 
   searchBooks(){
+    //TODO: add debounce
+    //TODO: add pagination support
     this.libraryService.searchBooks(this.searchTerm).subscribe((result) => {
       this.books = result.data.searchBooks;
     });

@@ -1,25 +1,128 @@
-type Book {
-    id: ID!
-    title: String!
-    author: String!
-    ISBN: String!
-    publishDate: String!
-    genre: String!
-    summary: String
+"""
+Type containing information about a book
+"""
+type Book { 
+    """
+    The ID of the book
+    """
+    id: ID! 
+    """
+    The title of the book 
+    """
+    title: String! 
+    """
+    The author of the book in the format "Firstname Lastname" 
+    """
+    author: String! 
+    """
+    The ISBN number of the book
+    """
+    ISBN: String! 
+    """
+    The date the book was published in format 'YYYY-MM-DD'
+    """
+    publishDate: String! 
+    """
+    The main genre associated with the book
+    """
+    genre: String! 
+    """
+    A short summary of the book's plot
+    """
+    summary: String 
 }
 
 type Query {
-    bookById(id: ID!): Book
-    bookByISBN(ISBN: String!): Book
-    booksByTitle(title: String!): [Book]
-    booksByAuthor(id: String!): [Book]
-    booksByGenre(id: String!): [Book]
-    searchBooks(searchTerm: String!): [Book]
+    """
+    Returns a Book matching the ID
+    """
+    bookById(
+        """
+        The ID of the Book
+        """
+        id: ID!): Book 
+    """
+    Returns a list of books where the search term exists in the title, author or genre
+    """
+    searchBooks(
+        """
+        Search term is any string, case insensitive
+        """
+        searchTerm: String!): [Book]
+    """
+    Returns all the Books in the library
+    """
     listBooks: [Book]
 }
 
-type Mutation {
-    addBook(title: String!, author: String!, ISBN: String!,publishDate: String!, genre: String!, summary:String!): Book
-    updateBook(id: ID!, title: String!, author: String!, ISBN: String!,publishDate: String!, genre: String!, summary:String!): Book
-    deleteBook(id: ID!): Boolean
+type Mutation { 
+    """
+    Creates a new Book, only available to logged in users.
+    """
+    addBook(
+
+    """
+    The title of the book 
+    """
+    title: String! 
+    """
+    The author of the book in the format "Firstname Lastname" 
+    """
+    author: String! 
+    """
+    The ISBN number of the book
+    """
+    ISBN: String! 
+    """
+    The date the book was published in format 'YYYY-MM-DD'
+    """
+    publishDate: String! 
+    """
+    The main genre associated with the book
+    """
+    genre: String! 
+    """
+    A short summary of the book's plot
+    """
+    summary: String ): Book 
+    """
+    Updates the details of a Book, only available to logged in users.
+    """
+    updateBook(    
+    """
+    The ID of the book
+    """
+    id: ID! 
+    """
+    The title of the book 
+    """
+    title: String! 
+    """
+    The author of the book in the format "Firstname Lastname" 
+    """
+    author: String! 
+    """
+    The ISBN number of the book
+    """
+    ISBN: String! 
+    """
+    The date the book was published in format 'YYYY-MM-DD'
+    """
+    publishDate: String! 
+    """
+    The main genre associated with the book
+    """
+    genre: String! 
+    """
+    A short summary of the book's plot
+    """
+    summary: String ): Book
+    """
+    Deletes a book, only available to logged in users.
+    """
+    deleteBook(
+        """
+        This ID of the Book to delete
+        """
+        id: ID!): Boolean
 }

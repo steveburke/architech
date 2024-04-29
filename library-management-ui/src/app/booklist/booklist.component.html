@@ -1,18 +1,16 @@
-<form>
-	<div class="mb-3 row">
-		<label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Full text search:</label>
-		<div class="col-xs-3 col-sm-auto">
+	<div class="col-xs-4 mb-3 row">
+		<div class="col-xs-4">
 			<input
-				id="table-complete-search"
+				id="search"
 				type="text"
 				class="form-control"
 				name="searchTerm"
+				placeholder="Enter you search here (Title, Author, Genre)"
 				[(ngModel)]="searchTerm"
+				(keyup)="searchBooks()"
 			/>
-			<button (click)="searchBooks()">Search</button>
 		</div>
 	</div>
-</form>
 
 <table class="table table-striped">
 	<thead>

@@ -1,40 +1,42 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-10">
             <div class="card">
                 <div class="card-header">Edit Book</div>
                 <div class="card-body">
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="id">ID</label>
                         <input type="number" class="form-control" id="id" [(ngModel)]="book.id" readonly>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="title">Title</label>
                         <input type="text" class="form-control" id="title" [(ngModel)]="book.title">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="author">Author</label>
                         <input type="text" class="form-control" id="author" [(ngModel)]="book.author">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="isbn">ISBN</label>
                         <input type="text" class="form-control" id="isbn" [(ngModel)]="book.ISBN">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="publishDate">Publish Date</label>
                         <input type="date" class="form-control" id="publishDate" [(ngModel)]="book.publishDate">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="genre">Genre</label>
                         <input type="text" class="form-control" id="genre" [(ngModel)]="book.genre">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="summary">Summary</label>
                         <textarea class="form-control" id="summary" rows="3" [(ngModel)]="book.summary"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary" (click)="saveBook()">Save</button>
-                    <button type="button" class="btn btn-danger" (click)="deleteBook()">Delete</button>
-                    <button type="button" class="btn btn-dark" (click)="cancel()">Cancel</button>
+                    <div class="float-end">
+                        <button type="button" *ngIf="isLoggedIn" class="btn btn-outline-primary" (click)="saveBook()">Save</button>
+                        <button type="button" *ngIf="isLoggedIn" class="btn btn-outline-danger" (click)="openConfirmation()">Delete</button>
+                        <button type="button" class="btn btn-outline-secondary" (click)="cancel()">Cancel</button>
+                    </div>
                 </div>
             </div>
         </div>
