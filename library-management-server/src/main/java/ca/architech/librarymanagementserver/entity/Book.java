@@ -14,8 +14,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -40,18 +38,12 @@ public class Book {
     private String title;
     private String ISBN;
     private String summary;
+    private String author;
+    private String genre;
 
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @Column(name = "publish_date")
     private LocalDate publishDate;
-
-    @ManyToOne
-    @JoinColumn(name = "genre_id")
-    private Genre genre;
-
-    @ManyToOne
-    @JoinColumn(name = "author_id")
-    private Author author;
 
 }

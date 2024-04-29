@@ -1,47 +1,25 @@
 type Book {
     id: ID!
     title: String!
-    author: Author!
+    author: String!
     ISBN: String!
     publishDate: String!
-    genre: Genre!
+    genre: String!
     summary: String
-}
-
-type Author {
-    id: ID!
-    firstName: String!
-    lastName: String!
-}
-
-type Genre {
-    id: ID!
-    name: String
 }
 
 type Query {
     bookById(id: ID!): Book
     bookByISBN(ISBN: String!): Book
     booksByTitle(title: String!): [Book]
-    booksByAuthor(id: ID!): [Book]
-    booksByGenre(id: ID!): [Book]
+    booksByAuthor(id: String!): [Book]
+    booksByGenre(id: String!): [Book]
     searchBooks(searchTerm: String!): [Book]
-    listGenres: [Genre]
-    listAuthors: [Author]
     listBooks: [Book]
 }
 
 type Mutation {
-    addBook(title: String!, authorId: ID!, ISBN: String!,publishDate: String!, genre: ID!, summary:String!): Book
-    updateBook(id: ID!, title: String!, authorId: ID!, ISBN: String!,publishDate: String!, genre: ID!, summary:String!): Book
+    addBook(title: String!, author: String!, ISBN: String!,publishDate: String!, genre: String!, summary:String!): Book
+    updateBook(id: ID!, title: String!, author: String!, ISBN: String!,publishDate: String!, genre: String!, summary:String!): Book
     deleteBook(id: ID!): Boolean
-
-    addAuthor(firstName: String, lastName: String): Author
-    updateAuthor(id: ID!, firstName: String!, lastName: String!): Author
-    deleteAuthor(id: ID!): Boolean
-
-    addGenre(name: String!): Genre
-    updateGenre(id: ID!, name: String!): Genre
-    deleteGenre(id: ID!): Boolean
-
 }

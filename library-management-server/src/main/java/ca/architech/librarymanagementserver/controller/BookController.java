@@ -9,40 +9,31 @@ import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 
-import ca.architech.librarymanagementserver.entity.Author;
 import ca.architech.librarymanagementserver.entity.Book;
-import ca.architech.librarymanagementserver.entity.Genre;
-import ca.architech.librarymanagementserver.repository.AuthorRepository;
 import ca.architech.librarymanagementserver.repository.BookRepository;
-import ca.architech.librarymanagementserver.repository.GenreRepository;
 
 @Controller
 public class BookController {
     private final BookRepository bookRepository;
-    private final AuthorRepository authorRepository;
-    private final GenreRepository genreRepository;
 
-    public BookController(BookRepository bookRepository, AuthorRepository authorRepository,
-        GenreRepository genreRepository) {
+    public BookController(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
-        this.authorRepository = authorRepository;
-        this.genreRepository = genreRepository;
     }
 
     @MutationMapping
     @PreAuthorize("isAuthenticated()")
     public Book addBook(@Argument String title,
-            @Argument Long authorId,
+            @Argument String author,
             @Argument String ISBN,
             @Argument LocalDate publishDate,
-            @Argument Long genreId,
+            @Argument String genre,
             @Argument String summary) {
         Book book = new Book();
         book.setTitle(title);
-        book.setAuthor(authorRepository.findById(authorId).get());
+        book.setAuthor(author);
         book.setISBN(ISBN);
         book.setPublishDate(publishDate);
-        book.setGenre(genreRepository.findById(genreId).get());
+        book.setGenre(genre);
         book.setSummary(summary);
         bookRepository.save(book);
         return book;
@@ -52,19 +43,19 @@ public class BookController {
     @PreAuthorize("isAuthenticated()")
     public Book updateBook(@Argument Long id,
             @Argument String title,
-            @Argument Long authorId,
+            @Argument String author,
             @Argument String ISBN,
             @Argument LocalDate publishDate,
-            @Argument Long genreId,
+            @Argument String genre,
             @Argument String summary) {
         Book book = new Book();
         book.setId(id);
         book.setTitle(title);
-        book.setAuthor(authorRepository.findById(authorId).get());
+        book.setAuthor(author);
         book.setISBN(ISBN);
         book.setPublishDate(publishDate);
-        book.setGenre(genreRepository.findById(genreId).get());
-        book.setSummary(summary);        
+        book.setGenre(genre);
+        book.setSummary(summary);
         bookRepository.save(book);
         return book;
     }
@@ -74,7 +65,7 @@ public class BookController {
     public Boolean deleteBook(@Argument Long id) {
         bookRepository.deleteAllById(Arrays.asList(id));
         return true;
-    }    
+    }
 
     @QueryMapping
     @PreAuthorize("permitAll")
@@ -84,13 +75,13 @@ public class BookController {
 
     @QueryMapping
     @PreAuthorize("permitAll")
-    public Iterable<Book> listBooks(){
+    public Iterable<Book> listBooks() {
         return bookRepository.findAll();
     }
 
     @QueryMapping
     @PreAuthorize("permitAll")
-    public Iterable<Book> searchBooks(@Argument String searchTerm){
+    public Iterable<Book> searchBooks(@Argument String searchTerm) {
         return bookRepository.findByTitleContains(searchTerm);
     }
 }
