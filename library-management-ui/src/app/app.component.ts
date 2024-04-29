@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { BooklistComponent } from './booklist/booklist.component';
-import { bootstrapApplication } from '@angular/platform-browser';
-import { provideRouter } from '@angular/router';
+import { SecurityService } from './security.service';
 import { LoginComponent } from './login/login.component';
 import { BookeditComponent } from './bookedit/bookedit.component';
 
@@ -16,4 +15,14 @@ import { BookeditComponent } from './bookedit/bookedit.component';
 
 export class AppComponent {
   title = 'library-management-ui';
+  isLoggedIn:boolean = false;
+  constructor(private securityService: SecurityService) { }
+  
+  ngOnInit(): void{
+    this.isLoggedIn = this.securityService.isLoggedIn();
+  }
+
+  logout(){
+    this.securityService.logout();
+  }
 }

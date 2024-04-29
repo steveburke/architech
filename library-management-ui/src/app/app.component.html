@@ -8,15 +8,15 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <!-- Add your navigation links here -->
           <li class="nav-item">
             <a class="nav-link" href="/">Home</a>
           </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-          <!-- Login button in the right corner -->
-          <li class="nav-item">
-            <a class="nav-link" href="/login">Login</a>
+          <li class="nav-item">{{isLoggedIn}}
+            <!--TODO: this isn't a good way to do this.-->
+            <a class="nav-link"  href="/login">Login</a>
+            <a class="nav-link" (click)="logout()" href="/">Logout</a>
           </li>
         </ul>
       </div>

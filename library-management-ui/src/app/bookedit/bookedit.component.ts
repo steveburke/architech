@@ -17,13 +17,14 @@ export class BookeditComponent {
   constructor(public libraryService: LibraryService, private router: Router) {
     const navigation = this.router.getCurrentNavigation();
     if (navigation && navigation.extras.state) {
-      this.book = navigation.extras.state?.['book'];
+      this.book = Object.assign({}, navigation.extras.state?.['book']);
     }
    }
 
   saveBook(){
     this.libraryService.updateBook(this.book).subscribe((result) => {
-      this.book = result.data.book;
+      this.book = result.data.updateBook;
+      this.router.navigate(['/']);
     })
   }
 }
