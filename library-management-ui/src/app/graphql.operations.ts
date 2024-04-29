@@ -46,8 +46,8 @@ query searchBooks($searchTerm: String!){
 //const LIST_BOOKS_BY_AUTHOR = gql``
 
 const UPDATE_BOOK = gql`
-mutation updateBook{
-    addBook(book:Book){
+mutation updateBook($id: ID!, $title: String!, $author: String!, $ISBN: String!, $publishDate: String!, $genre: String!, $summary:String!){
+    updateBook(id: $id, title: $title, author: $author, ISBN: $ISBN, publishDate: $publishDate, genre: $genre, summary:$summary){
     id
     ISBN
     author 
@@ -60,7 +60,7 @@ mutation updateBook{
 `
 const ADD_BOOK = gql`
 mutation addBook{
-    addBook(id: ID, title: String, authorId: ID, ISBN: String,publishDate: String, genre: ID, summary:String){
+    addBook(title: String, author: String, ISBN: String, publishDate: String, genre: String, summary:String){
     id
     ISBN
     author 

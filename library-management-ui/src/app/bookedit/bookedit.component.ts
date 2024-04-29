@@ -22,7 +22,6 @@ export class BookeditComponent {
    }
 
   saveBook(){
-    console.log(this.book);
     this.libraryService.updateBook(this.book).subscribe((result) => {
       this.book = result.data.book;
     })
