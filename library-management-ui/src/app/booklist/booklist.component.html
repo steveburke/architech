@@ -2,7 +2,14 @@
 	<div class="mb-3 row">
 		<label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Full text search:</label>
 		<div class="col-xs-3 col-sm-auto">
-			<input id="table-filtering-search" class="form-control" type="text"/>
+			<input
+				id="table-complete-search"
+				type="text"
+				class="form-control"
+				name="searchTerm"
+				[(ngModel)]="searchTerm"
+			/>
+			<button (click)="searchBooks()">Search</button>
 		</div>
 	</div>
 </form>
@@ -19,11 +26,11 @@
 	</thead>
 	<tbody>
 		@for (book of books; track book.title; let i = $index) {
-			<tr>
-				<td>{{book.ISBN}}</td>
+			<tr (click)="onRowClick(book)">
                 <td>{{book.title}}</td>
                 <td>{{book.author.lastName}}, {{book.author.firstName}}</td>
                 <td>{{book.genre.name}}</td>
+				<td>{{book.ISBN}}</td>
                 <td>{{book.publishDate}}</td>
 			</tr>
 		} @empty {

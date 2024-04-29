@@ -21,10 +21,11 @@ type Genre {
 
 type Query {
     bookById(id: ID!): Book
-    bookByISBN(ISBN: String): Book
-    booksByTitle(title: String): [Book]
+    bookByISBN(ISBN: String!): Book
+    booksByTitle(title: String!): [Book]
     booksByAuthor(id: ID!): [Book]
     booksByGenre(id: ID!): [Book]
+    searchBooks(searchTerm: String!): [Book]
     listGenres: [Genre]
     listAuthors: [Author]
     listBooks: [Book]

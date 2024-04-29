@@ -55,8 +55,8 @@ query findBookById {
 `
 
 const SEARCH_BOOKS = gql`
-query searchBooks{
-    searchBooks(searchTerm: String) {
+query searchBooks($searchTerm: String!){
+    searchBooks(searchTerm: $searchTerm) {
     id
     ISBN
     author {
@@ -72,6 +72,7 @@ query searchBooks{
   }
 }
 `
+
 
 //const LIST_BOOKS_BY_GENRE = gql``
 //const LIST_BOOKS_BY_AUTHOR = gql``

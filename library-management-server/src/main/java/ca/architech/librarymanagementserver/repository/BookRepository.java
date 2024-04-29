@@ -5,5 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import ca.architech.librarymanagementserver.entity.Book;
 
 public interface BookRepository extends CrudRepository<Book, Long> {
+
+    Iterable<Book> findByTitleContains(String title);
     
 }

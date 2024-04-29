@@ -23,7 +23,6 @@ export function apolloOptionsFactory(): ApolloClientOptions<any> {
 
   return {
     link : ApolloLink.from([auth, httpLink.create({ uri })]),
-    //link: httpLink.create({ uri }),
     cache: new InMemoryCache(),
   };
 }

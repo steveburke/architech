@@ -12,30 +12,37 @@ import org.springframework.stereotype.Controller;
 import ca.architech.librarymanagementserver.entity.Author;
 import ca.architech.librarymanagementserver.entity.Book;
 import ca.architech.librarymanagementserver.entity.Genre;
+import ca.architech.librarymanagementserver.repository.AuthorRepository;
 import ca.architech.librarymanagementserver.repository.BookRepository;
+import ca.architech.librarymanagementserver.repository.GenreRepository;
 
 @Controller
 public class BookController {
     private final BookRepository bookRepository;
+    private final AuthorRepository authorRepository;
+    private final GenreRepository genreRepository;
 
-    public BookController(BookRepository bookRepository) {
+    public BookController(BookRepository bookRepository, AuthorRepository authorRepository,
+        GenreRepository genreRepository) {
         this.bookRepository = bookRepository;
+        this.authorRepository = authorRepository;
+        this.genreRepository = genreRepository;
     }
 
     @MutationMapping
     @PreAuthorize("isAuthenticated()")
     public Book addBook(@Argument String title,
-            @Argument Author author,
+            @Argument Long authorId,
             @Argument String ISBN,
             @Argument LocalDate publishDate,
-            @Argument Genre genre,
+            @Argument Long genreId,
             @Argument String summary) {
         Book book = new Book();
         book.setTitle(title);
-        book.setAuthor(author);
+        book.setAuthor(authorRepository.findById(authorId).get());
         book.setISBN(ISBN);
         book.setPublishDate(publishDate);
-        book.setGenre(genre);
+        book.setGenre(genreRepository.findById(genreId).get());
         book.setSummary(summary);
         bookRepository.save(book);
         return book;
@@ -43,7 +50,21 @@ public class BookController {
 
     @MutationMapping
     @PreAuthorize("isAuthenticated()")
-    public Book updateBook(@Argument Book book) {
+    public Book updateBook(@Argument Long id,
+            @Argument String title,
+            @Argument Long authorId,
+            @Argument String ISBN,
+            @Argument LocalDate publishDate,
+            @Argument Long genreId,
+            @Argument String summary) {
+        Book book = new Book();
+        book.setId(id);
+        book.setTitle(title);
+        book.setAuthor(authorRepository.findById(authorId).get());
+        book.setISBN(ISBN);
+        book.setPublishDate(publishDate);
+        book.setGenre(genreRepository.findById(genreId).get());
+        book.setSummary(summary);        
         bookRepository.save(book);
         return book;
     }
@@ -65,5 +86,11 @@ public class BookController {
     @PreAuthorize("permitAll")
     public Iterable<Book> listBooks(){
         return bookRepository.findAll();
+    }
+
+    @QueryMapping
+    @PreAuthorize("permitAll")
+    public Iterable<Book> searchBooks(@Argument String searchTerm){
+        return bookRepository.findByTitleContains(searchTerm);
     }
 }
