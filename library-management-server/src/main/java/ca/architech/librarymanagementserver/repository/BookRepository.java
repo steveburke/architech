@@ -7,5 +7,6 @@ import ca.architech.librarymanagementserver.entity.Book;
 public interface BookRepository extends CrudRepository<Book, Long> {
 
     Iterable<Book> findByTitleContainingIgnoreCase(String title);
+    Iterable<Book> findByTitleIgnoreCaseContainingOrAuthorIgnoreCaseContainingOrGenreIgnoreCaseContaining(String searchTerm,String searchTerm1,String searchTerm2);
     
 }

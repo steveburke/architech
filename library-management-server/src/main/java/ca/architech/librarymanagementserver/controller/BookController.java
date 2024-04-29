@@ -82,6 +82,6 @@ public class BookController {
     @QueryMapping
     @PreAuthorize("permitAll")
     public Iterable<Book> searchBooks(@Argument String searchTerm) {
-        return bookRepository.findByTitleContainingIgnoreCase(searchTerm);
+        return bookRepository.findByTitleIgnoreCaseContainingOrAuthorIgnoreCaseContainingOrGenreIgnoreCaseContaining(searchTerm,searchTerm,searchTerm);
     }
 }
