@@ -4,11 +4,12 @@ import { BooklistComponent } from './booklist/booklist.component';
 import { SecurityService } from './security.service';
 import { LoginComponent } from './login/login.component';
 import { BookeditComponent } from './bookedit/bookedit.component';
+import { CommonModule } from '@angular/common'
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, BooklistComponent, LoginComponent, BookeditComponent],
+  imports: [RouterOutlet, CommonModule, BooklistComponent, LoginComponent, BookeditComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Book } from './book';
 import { Apollo, gql } from 'apollo-angular';
-import { ADD_BOOK, FIND_BOOK_BY_ID, LIST_BOOKS, SEARCH_BOOKS, UPDATE_BOOK } from './graphql.operations';
+import { ADD_BOOK, DELETE_BOOK, FIND_BOOK_BY_ID, LIST_BOOKS, SEARCH_BOOKS, UPDATE_BOOK } from './graphql.operations';
 
 @Injectable({
   providedIn: 'root'
@@ -58,8 +58,11 @@ export class LibraryService {
     })
   }
 
-  deleteBook(){
-
+  deleteBook(bookId: Number){
+    return this.apollo.mutate<any>({
+      mutation: DELETE_BOOK,
+        variables:{ id: bookId}
+    });
   }
 
 }

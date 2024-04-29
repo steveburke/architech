@@ -59,8 +59,8 @@ mutation updateBook($id: ID!, $title: String!, $author: String!, $ISBN: String!,
 }
 `
 const ADD_BOOK = gql`
-mutation addBook{
-    addBook(title: String, author: String, ISBN: String, publishDate: String, genre: String, summary:String){
+mutation addBook($title: String!, $author: String!, $ISBN: String!, $publishDate: String!, $genre: String!, $summary:String!){
+    addBook(title: $title, author: $author, ISBN: $ISBN, publishDate: $publishDate, genre: $genre, summary:$summary){
     id
     ISBN
     author 
@@ -72,8 +72,8 @@ mutation addBook{
 }
 `
 const DELETE_BOOK = gql`
-mutation deleteBook {
-  deleteBook(id: ID)
+mutation deleteBook($id: ID!) {
+  deleteBook(id: $id)
 }
 `
 

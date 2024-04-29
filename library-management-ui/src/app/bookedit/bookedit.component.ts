@@ -24,7 +24,17 @@ export class BookeditComponent {
   saveBook(){
     this.libraryService.updateBook(this.book).subscribe((result) => {
       this.book = result.data.updateBook;
-      this.router.navigate(['/']);
+      this.router.navigate(['booklist']);
     })
+  }
+
+  deleteBook(){
+    this.libraryService.deleteBook(this.book.id).subscribe((result) => {
+      this.router.navigate(['booklist']);
+    });
+  }
+
+  cancel(){
+    this.router.navigate(['booklist']);
   }
 }
