@@ -9,6 +9,12 @@ Both projects are contained in this repository:
  - library-management-server
  - library-management-ui
 
+To run the application in Docker run this command from the root of the repository:
+
+	docker-compose up
+	
+** OR **
+
 To launch the application, start the postgres server with the following command:
 
 	docker run --name mypostgres -e POSTGRES_PASSWORD=zaq12wsx -p 5432:5432 -d postgres
