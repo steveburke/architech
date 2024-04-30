@@ -29,5 +29,7 @@ To explore the GraphQL Schema, GraphiQL is installed and running here:
 
     http://localhost:8080/graphiql?path=/graphql
 
+There is also static documentation for the GraphQL API in the **doc/schema/** folder of the root of this repository.
+
 Please don't hesistate to contact me with any questions or concerns.
 
