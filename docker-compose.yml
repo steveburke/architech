@@ -1,8 +1,6 @@
-version: '3.8'
-
 services:
   spring-boot-app:
-    build: ./library-managment-server
+    build: ./library-management-server
     ports:
       - "8080:8080"
     depends_on:
@@ -15,7 +13,7 @@ services:
   angular-app:
     build: ./library-management-ui
     ports:
-      - "4200:4200"
+      - "80:4200"
 
   postgres:
     image: postgres:latest
