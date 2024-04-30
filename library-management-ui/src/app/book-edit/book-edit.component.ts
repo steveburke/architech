@@ -5,6 +5,7 @@ import { SecurityService } from '../security.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { Book } from '../book';
 
 @Component({
   selector: 'app-book-edit',
@@ -24,6 +25,16 @@ export class BookEditComponent {
     const navigation = this.router.getCurrentNavigation();
     if (navigation && navigation.extras.state) {
       this.book = Object.assign({}, navigation.extras.state?.['book']);
+    }
+    if(this.book == null){
+      this.book = {    id: -1,
+        title: "",
+        author: "",
+        ISBN: "",
+        publishDate: Date.now,
+        genre: "",
+        summary: ""
+    }
     }
    }
   
