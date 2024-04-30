@@ -23,7 +23,6 @@ public class BookRepositoryTest {
     private BookRepository bookRepository;
     @Test
     public void testSaveBook() {
-        // Create a new user
         Book book = new Book();
         book.setTitle("The Test Book");
         book.setISBN("1234567890987654321");
@@ -54,6 +53,25 @@ public class BookRepositoryTest {
     public void testListBooks(){
         Iterable<Book> books = bookRepository.findAll();
         assert(((Collection<?>) books).size() == 7);
+    }
+
+    @Test
+    public void testDeleteBook() {
+        Book book = new Book();
+        book.setTitle("The Test Book");
+        book.setISBN("1234567890987654321");
+        book.setAuthor("Test Author");
+        book.setGenre("Testing");
+        book.setPublishDate(LocalDate.now());
+        book.setSummary("This is the summary for the book about testing.");
+
+        Book savedBook = bookRepository.save(book);
+        assertNotNull(savedBook.getId());
+        Long id = savedBook.getId();
+        bookRepository.delete(savedBook);
+        Optional<Book> deletedOptionalBook = bookRepository.findById(id);
+        assertTrue(!deletedOptionalBook.isPresent());
+
     }
 
 }
