@@ -4,6 +4,7 @@
 For the coding exercise for SA position, I have built a Spring Boot backend with a Postgres Database. The frontend is build in Angular with the Apollo Client.
 
 **Getting Started**
+
 Both projects are contained in this repository:
  - library-management-server
  - library-management-ui
@@ -20,6 +21,7 @@ To launch the UI, run this command from the library-management-ui folder:
     npm start
 
  **Using the App**
+ 
  To access the application, open the following URL in your browser:
  
     http://localhost:4200	
