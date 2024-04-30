@@ -13,7 +13,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: zaq12wsx
 
   angular-app:
-    build: ./angular-app
+    build: ./library-management-ui
     ports:
       - "4200:4200"
 
