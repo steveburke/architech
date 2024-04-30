@@ -1,13 +1,25 @@
-# the base image
-FROM amazoncorretto:17
+services:
+  spring-boot-app:
+    build: ./library-managment-server
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: zaq12wsx
 
-# the JAR file path
-ARG JAR_FILE=target/*.jar
+  angular-app:
+    build: ./angular-app
+    ports:
+      - "4200:4200"
 
-# Copy the JAR file from the build context into the Docker image
-COPY ${JAR_FILE} application.jar
-
-CMD apt-get update -y
-
-# Set the default command to run the Java application
-ENTRYPOINT ["java", "-Xmx2048M", "-jar", "/application.jar"]
+  postgres:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: zaq12wsx
