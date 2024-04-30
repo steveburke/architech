@@ -9,7 +9,7 @@ RUN npm run build --prod
 
 FROM nginx:alpine
 
-COPY --from=builder /app/dist/library-management-ui /usr/share/nginx/html
+COPY --from=builder /app/dist/library-management-ui/browser /usr/share/nginx/html
 
 EXPOSE 80
 
