@@ -6,4 +6,4 @@ INSERT INTO BOOK (id, title, author, ISBN, publish_date, genre, summary) VALUES 
 INSERT INTO BOOK (id, title, author, ISBN, publish_date, genre, summary) VALUES (6,'Cannery Row','John Steinbeck','9780142000687','1945-01-01','Fiction','A novel by John Steinbeck, set in a colorful neighborhood in Monterey, California. It portrays the lives of the residents, including the marine biologist Doc and the group of misfits who frequent Lee Chong''s grocery store.');
 INSERT INTO BOOK (id, title, author, ISBN, publish_date, genre, summary) VALUES (7,'Fahrenheit 451','Ray Bradbury','9781451673319','1953-10-19','Dystopian','A science fiction novel by Ray Bradbury, set in a future society where books are banned and burned by the government. The story follows a fireman named Guy Montag who becomes disillusioned with the oppressive regime.');
 
-INSERT INTO USERS (id, username, password) VALUES (1,'architech','$2a$10$5IUFBkQA5M/e0ECLvIuR2e4gc8vscfE18R90WejzubsKVgQGhApBm');
+INSERT INTO USERS (id, username, password) VALUES (0,'architech','$2a$10$5IUFBkQA5M/e0ECLvIuR2e4gc8vscfE18R90WejzubsKVgQGhApBm');

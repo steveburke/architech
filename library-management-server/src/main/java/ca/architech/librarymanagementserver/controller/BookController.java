@@ -3,6 +3,7 @@ package ca.architech.librarymanagementserver.controller;
 import java.time.LocalDate;
 import java.util.Arrays;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -14,6 +15,7 @@ import ca.architech.librarymanagementserver.repository.BookRepository;
 
 @Controller
 public class BookController {
+    @Autowired
     private final BookRepository bookRepository;
 
     public BookController(BookRepository bookRepository) {
