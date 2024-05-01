@@ -9,7 +9,7 @@ Both projects are contained in this repository:
  - library-management-server
  - library-management-ui
 
-To run the application in Docker run this command from the root of the repository:
+To run the application in Docker, run this command from the root of the repository:
 
 	docker-compose up
 	
