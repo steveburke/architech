@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Component
+@SuppressWarnings("deprecation")
 public class JwtUtil {
 
     @Value("${app.jwt.secret}")
