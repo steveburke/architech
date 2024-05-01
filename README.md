@@ -24,7 +24,7 @@ Some prerequisites required:
  - npm
  - angular-cli
  - docker
- - 
+
 To launch the application, start the postgres server with the following command:
 
 	docker run --name mypostgres -e POSTGRES_PASSWORD=zaq12wsx -p 5432:5432 -d postgres
