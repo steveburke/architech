@@ -15,6 +15,16 @@ To run the application in Docker run this command from the root of the repositor
 	
 ** OR **
 
+If you'd rather launch the application in your IDE or locaally, you can use the section below.  
+
+Some prerequisites required:
+ - java jdk
+ - maven
+ - node.js
+ - npm
+ - angular-cli
+ - docker
+ - 
 To launch the application, start the postgres server with the following command:
 
 	docker run --name mypostgres -e POSTGRES_PASSWORD=zaq12wsx -p 5432:5432 -d postgres
