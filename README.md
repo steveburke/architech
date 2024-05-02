@@ -1,7 +1,7 @@
 
 # Architech Library Management
 
-For the coding exercise for SA position, I have built a Spring Boot backend with a Postgres Database. The frontend is built in Angular with the Apollo Client.
+For the for SA coding exercise, I built a Spring Boot backend with a Postgres Database. The frontend is built in Angular with the Apollo Client.
 
 **Getting Started**
 
