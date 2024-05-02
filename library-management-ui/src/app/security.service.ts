@@ -34,5 +34,6 @@ export class SecurityService {
     return !!this.getToken();
   }
 
+  //TODO: isLoggedIn is better as Observable
   //TODO: handle expired tokens, refresh tokens
 }
